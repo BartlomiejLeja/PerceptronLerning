@@ -27,7 +27,7 @@ namespace PerceptronLerning
             {
                 errorCount = 0;
 
-                for(int j =0;j< 30;j++)
+                for(int j =0;j< _input.Length/3;j++)
                 {
                     var y = _input[j,0] * _weight[0] + _input[j,1] * _weight[1];
                     if (_input[j,2] != calculateValue(y))
