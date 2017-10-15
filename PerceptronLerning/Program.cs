@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PerceptronLerning
 {
@@ -10,6 +6,13 @@ namespace PerceptronLerning
     {
         static void Main(string[] args)
         {
+           var textReader = new TextFileReader();
+           var input = textReader.ConvertTextForArray(@"C:\Users\BartlomiejLeja\source\repos\PerceptronLerning\PerceptronLerning\testData.txt");
+
+            var neuron = new Neuron(input,2);
+            neuron.PerceptronLearning();
+      
+            Console.ReadKey();
         }
     }
 }
