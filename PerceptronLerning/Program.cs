@@ -9,7 +9,7 @@ namespace PerceptronLerning
            var textReader = new TextFileReader();
            var input = textReader.ConvertTextForArray(@"C:\Users\BartlomiejLeja\source\repos\PerceptronLerning\PerceptronLerning\testData.txt");
 
-            var neuron = new Neuron(input,2);
+            var neuron = new Neuron(input,2,0.1);
             neuron.PerceptronLearning();
       
             Console.ReadKey();

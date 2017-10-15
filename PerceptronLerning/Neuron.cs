@@ -5,16 +5,17 @@ namespace PerceptronLerning
     public class Neuron
     {
         private double _eta;
-        private double _learningCoefficient = 0.5;
+        private double _learningCoefficient;
 
         private double [] _weight { get; set; }
         private double[,] _input;
         private  int _countOfInputs;
         
-        public Neuron(double[,] input, int countOfInputs)
+        public Neuron(double[,] input, int countOfInputs,double learningCoefficien)
         {
             _input = input;
             _countOfInputs = countOfInputs;
+            _learningCoefficient = learningCoefficien;
         }
 
         public void PerceptronLearning()
