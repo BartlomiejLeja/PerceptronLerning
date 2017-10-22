@@ -1,26 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace PerceptronLerning
 {
     class OneLayerNetwork
     {
         private List<UniversalNeuron> NeuronLayer;
-        private string _path;
         
-        public OneLayerNetwork(List<LetterData> letterInput, int numerOfNeurons)
+        public OneLayerNetwork(List<LetterData> letterInput,double learningCoefficien)
         {
+            char[] letters ={'A', 'B' ,'C','D','E','F','G','H','I','J','a','b','c','d','e','f','g','h','i','j'};
             NeuronLayer = new List<UniversalNeuron>();
-            for(int i=0;i<numerOfNeurons;i++)
+            for (int i = 0; i < letterInput.Count; i++)
             {
-                NeuronLayer.Add(new UniversalNeuron(letterInput, 0.5));
+                NeuronLayer.Add(new UniversalNeuron(letterInput, learningCoefficien, i,letters[i]));
             }
             CreateOneLayerNetwork();
         }
 
         private void CreateOneLayerNetwork()
         {
-            foreach(var universalNeuron in NeuronLayer)
+            foreach (var universalNeuron in NeuronLayer)
             {
                 universalNeuron.PerceptronLearning();
             }

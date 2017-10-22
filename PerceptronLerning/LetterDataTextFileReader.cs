@@ -9,34 +9,60 @@ namespace PerceptronLerning
     class LetterDataTextFileReader
     {
         List<LetterData> letterList;
-        double[,] resultArray;
-        int test = 0;
+        List<double[]> testLetterList;
+
+        double[] patternArray;
+        double[] resultArray;
+        double[] testArray;
         string[] values;
+        
+        int countOfLetterArray=35;
+
+        public List<double []> ConverTextForTestDataArray(string path)
+        {
+            testLetterList = new List<double[]>();
+            string[] lines = File.ReadAllLines(path, Encoding.UTF8);
+
+            for (int i = 0; i < lines.Length; i++)
+            {
+                values = lines[i].Split(' ');
+                testArray = new double[countOfLetterArray];
+                for (int j = 0; j < countOfLetterArray; j++)
+                {
+                    testArray[j] = Convert.ToDouble(values[j]);
+                }
+                testLetterList.Add(testArray);
+            }
+            return testLetterList;
+        }
+
+
         public List<LetterData> ConvertTextForArray(string path)
         {
             string[] lines = File.ReadAllLines(path, Encoding.UTF8);
             letterList = new List<LetterData>();
-            resultArray = new double[7, 5];
             
             for (int i = 0; i < lines.Length; i++)
             {
                 values = lines[i].Split(' ');
-                for (int j = 0; j < 5; j++)
+               
+                if (values.Length == 35)
                 {
-                    resultArray[test, j] = Convert.ToDouble(values[j]);
+                    patternArray = new double[countOfLetterArray];
+                    for (int j = 0; j < countOfLetterArray; j++)
+                    {
+                        patternArray[j] = Convert.ToDouble(values[j]);
+                    }
                 }
-                if (values.Length == 6)
+                else if (values.Length == 20)
                 {
-                    double[,] tempArray = new double[7, 5];
-                    for (int j = 0; j < 7; j++)
-                        for (int k = 0; k < 5; k++)
-                            tempArray[j, k] = resultArray[j, k];
-                    
-                    letterList.Add(new LetterData(tempArray, Convert.ToDouble(values[5])));
-                    test = 0;  
+                    resultArray = new double[20];
+                    for (int j = 0; j < 20; j++)
+                    {
+                        resultArray[j] = Convert.ToDouble(values[j]);
+                    }
+                    letterList.Add(new LetterData(patternArray, resultArray));
                 }
-                else
-                test++;
             }
             return letterList;
         }

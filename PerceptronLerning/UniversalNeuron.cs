@@ -8,16 +8,21 @@ namespace PerceptronLerning
         private double _eta;
         private double _learningCoefficient;
 
-        private double[,] _weight { get; set; }
+        private double[] _weight { get; set; }
         private List<LetterData> _letterInput;
-        private LetterDataTextFileReader dictionaryInput; 
+        private LetterDataTextFileReader dictionaryInput;
+        int countOfletterArray = 35;
+        int _letterIndex;
+        char _letter;
 
 
-        public UniversalNeuron(List<LetterData> letterInput,  double learningCoefficien)
+        public UniversalNeuron(List<LetterData> letterInput, double learningCoefficien, int letterIndex, char letter )
         {
-             _letterInput = letterInput;
+            _letterInput = letterInput;
             _learningCoefficient = learningCoefficien;
             dictionaryInput = new LetterDataTextFileReader();
+            _letterIndex = letterIndex;
+            _letter = letter;
         }
 
         public void PerceptronLearning()
@@ -29,23 +34,20 @@ namespace PerceptronLerning
             for (int i = 0; i < iterationCount; i++)
             {
                 errorCount = 0;
-                double y=0;
+                double y = 0;
 
                 foreach (var letter in _letterInput)
                 {
-                    for (int j = 0; j < 7; j++)
-                        for (int k = 0; k < 5; k++)
-                        {
-                             y += letter.LetterPattern[j, k] * _weight[j, k];
-                        }
-                    
-                    if (letter.LetterResult != calculateValue(y))
+                    for (int j = 0; j < 35; j++)
+                            y += letter.LetterPattern[j] * _weight[j];
+     
+                    if (letter.LetterResult[_letterIndex] != calculateValue(y))
                     {
-                        error = letter.LetterResult - calculateValue(y);
-                        for (int j = 0; j < 7; j++)
-                            for (int k = 0; k < 5; k++)
-                                _weight[j, k] = _weight[j, k] + _learningCoefficient * error * letter.LetterPattern[j, k];
+                        error = letter.LetterResult[_letterIndex] - calculateValue(y);
                       
+                            for (int k = 0; k < 35; k++)
+                                _weight[ k] = _weight[ k] + _learningCoefficient * error * letter.LetterPattern[ k];
+
                         _eta = _eta - error;
                         errorCount++;
                     }
@@ -53,14 +55,14 @@ namespace PerceptronLerning
                 if (errorCount == 0)
                 {
                     Console.WriteLine($"Number of needed iterations is {i + 1}");
-                    for (int j = 0; j < 7; j++)
-                        for (int k = 0; k < 5; k++)
-                            Console.WriteLine($"Weight {j},{k} = {_weight[j, k]}");
+                    
+                        for (int k = 0; k < 35; k++)
+                            Console.WriteLine($"Weight {k} = {_weight[k]}");
                     Console.WriteLine($"Eta = {_eta}");
                     break;
                 }
             }
-            testMethod(@"C:\Users\BartlomiejLeja\source\repos\PerceptronLerning\PerceptronLerning\letterLearningData.txt");
+            testMethod(@"C:\Users\BartlomiejLeja\source\repos\PerceptronLerning\PerceptronLerning\letterTestData.txt");
         }
 
         private double calculateValue(double sum)
@@ -70,28 +72,25 @@ namespace PerceptronLerning
 
         private void drawWeight()
         {
-            _weight = new double[7,5];
+            _weight = new double[countOfletterArray];
             var randomNumber = new Random();
-            for (int i = 0; i < 7; i++)
-                for (int j = 0; j < 5; j++)
-                    _weight[i,j] = -10 + randomNumber.NextDouble() * 20;
+            for (int i = 0; i < 35; i++)
+                    _weight[i] = -10 + randomNumber.NextDouble() * 20;
 
-            for (int i = 0; i < 7; i++)
-                for (int j = 0; j < 5; j++)
-                    Console.WriteLine($"Weight {i},{j} = {_weight[i, j]}");
+            for (int i = 0; i < 35; i++)
+                    Console.WriteLine($"Weight {i} = {_weight[i]}");
         }
 
         private void testMethod(string path)
         {
             double result = 0;
-            List<LetterData> testLetter = dictionaryInput.ConvertTextForArray(path);
+            List<double[]> testLetter = dictionaryInput.ConverTextForTestDataArray(path);
             for (int i = 0; i < testLetter.Count; i++)
             {
-                for (int j = 0; j < 7; j++)
-                    for (int k = 0; k < 5; k++)
-                        result += testLetter[i].LetterPattern[j, k] * _weight[j, k];
+                    for (int k = 0; k < 35; k++)
+                        result += testLetter[i][k] * _weight[ k];
 
-                Console.WriteLine($"Is this leeter A = {calculateValue(result)}");
+                Console.WriteLine($"Is this letter {_letter} = {calculateValue(result)}");
             }
 
         }
