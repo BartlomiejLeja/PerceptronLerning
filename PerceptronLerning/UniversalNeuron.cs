@@ -44,11 +44,12 @@ namespace PerceptronLerning
                     if (letter.LetterResult[_letterIndex] != calculateValue(y))
                     {
                         error = letter.LetterResult[_letterIndex] - calculateValue(y);
-                      
+                        double derivative = calculateValue(y) * (1 - calculateValue(y));
                             for (int k = 0; k < 35; k++)
                                 _weight[ k] = _weight[ k] + _learningCoefficient * error * letter.LetterPattern[ k];
+                       // _weight[ k] = _weight[ k] +_learningCoefficient * error * letter.LetterPattern[ k]*derivative;
 
-                        _eta = _eta - error;
+                       _eta = _eta - error;
                         errorCount++;
                     }
                 }
@@ -56,8 +57,8 @@ namespace PerceptronLerning
                 {
                     Console.WriteLine($"Number of needed iterations is {i + 1}");
                     
-                        for (int k = 0; k < 35; k++)
-                            Console.WriteLine($"Weight {k} = {_weight[k]}");
+                        //for (int k = 0; k < 35; k++)
+                        //    Console.WriteLine($"Weight {k} = {_weight[k]}");
                     Console.WriteLine($"Eta = {_eta}");
                     break;
                 }
@@ -70,6 +71,11 @@ namespace PerceptronLerning
             return (sum > _eta) ? 1 : 0;
         }
 
+        private double calculateValue1(double sum)
+        {
+            return (1 / (1 + Math.Exp(-sum)));
+        }
+
         private void drawWeight()
         {
             _weight = new double[countOfletterArray];
@@ -77,8 +83,8 @@ namespace PerceptronLerning
             for (int i = 0; i < 35; i++)
                     _weight[i] = -10 + randomNumber.NextDouble() * 20;
 
-            for (int i = 0; i < 35; i++)
-                    Console.WriteLine($"Weight {i} = {_weight[i]}");
+            //for (int i = 0; i < 35; i++)
+            //        Console.WriteLine($"Weight {i} = {_weight[i]}");
         }
 
         private void testMethod(string path)
@@ -92,7 +98,6 @@ namespace PerceptronLerning
 
                 Console.WriteLine($"Is this letter {_letter} = {calculateValue(result)}");
             }
-
         }
     }
 }

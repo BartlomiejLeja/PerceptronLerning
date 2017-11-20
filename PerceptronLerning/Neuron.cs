@@ -40,7 +40,7 @@ namespace PerceptronLerning
                         errorCount++;
                     }
                 }
-                if(errorCount ==0)
+                if(errorCount==0)
                 {
                     Console.WriteLine($"Number of needed iterations is {i + 1}");
                     Console.WriteLine($"Weight 0 = {_weight[0]} Weight 1 = {_weight[1]}");
@@ -70,7 +70,7 @@ namespace PerceptronLerning
         {
             _weight = new double [2];
             var randomNumber = new Random();
-            for (int i=0; i< _countOfInputs; i++)
+            for (int i=0; i< 2; i++)
                 _weight[i] = -10 + randomNumber.NextDouble() * 20;
             
             Console.WriteLine($"Weight 0 = {_weight[0]} Weight 1 = {_weight[1]}");

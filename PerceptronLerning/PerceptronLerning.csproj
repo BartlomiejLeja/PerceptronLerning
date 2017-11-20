@@ -42,6 +42,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BackpropagationNeuralNetwork.cs" />
+    <Compile Include="FloatLetterData.cs" />
+    <Compile Include="HebbRule\HebbLetterDataTextFileReader.cs" />
+    <Compile Include="HebbRule\HebbRule.cs" />
+    <Compile Include="HebbRule\HebbRuleHandler.cs" />
+    <Compile Include="Layer.cs" />
     <Compile Include="LetterData.cs" />
     <Compile Include="LetterDataTextFileReader.cs" />
     <Compile Include="Neuron.cs" />
