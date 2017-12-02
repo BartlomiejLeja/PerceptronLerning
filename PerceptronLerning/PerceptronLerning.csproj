@@ -47,6 +47,10 @@
     <Compile Include="HebbRule\HebbLetterDataTextFileReader.cs" />
     <Compile Include="HebbRule\HebbRule.cs" />
     <Compile Include="HebbRule\HebbRuleHandler.cs" />
+    <Compile Include="KohonenMaps\KohonenMap.cs" />
+    <Compile Include="KohonenMaps\KohonenMapLetterDataTextFileReader.cs" />
+    <Compile Include="KohonenMaps\KohonenMapsHandler.cs" />
+    <Compile Include="KohonenMaps\KohonenNeuron.cs" />
     <Compile Include="Layer.cs" />
     <Compile Include="LetterData.cs" />
     <Compile Include="LetterDataTextFileReader.cs" />

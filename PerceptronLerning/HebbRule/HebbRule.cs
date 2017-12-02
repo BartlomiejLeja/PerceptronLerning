@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 
 namespace PerceptronLerning.HebbRule
 {
@@ -10,7 +9,7 @@ namespace PerceptronLerning.HebbRule
         private double s;
         private double c = 0.1;
         private double [] cap;
-        private double gamma = 0.1;
+        private double gamma = 0.9;
 
         void adjustWeight(double [] input)
         {
@@ -26,7 +25,7 @@ namespace PerceptronLerning.HebbRule
             }
             for (int i = 0; i < _weight.Length; i++)
             {
-                _weight[i] = _weight[i]/**(1-gamma)*/ + cap[i];
+                _weight[i] = _weight[i]*(1-gamma) + cap[i];
              //   Console.Write($"{Math.Round(_weight[i], 2)} ");
             }
             s = 0;
