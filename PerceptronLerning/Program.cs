@@ -1,5 +1,6 @@
 ﻿using PerceptronLerning.HebbRule;
 using PerceptronLerning.KohonenMaps;
+using PerceptronLerning.KohonenWTA;
 using System;
 
 namespace PerceptronLerning
@@ -41,7 +42,11 @@ namespace PerceptronLerning
             //var test = new HebbRuleHandler();
             //test.HebbRuleShower();
 
-            KohonenMap KohonenMap = new KohonenMap(35, 5, @"C:\Users\BartlomiejLeja\source\repos\PerceptronLerning\PerceptronLerning\kohonenMapLearningData.txt");
+           KohonenMap KohonenMap = new KohonenMap(35, 5, @"C:\Users\BartlomiejLeja\source\repos\PerceptronLerning\PerceptronLerning\kohonenMapLearningData.txt");
+
+            //KohoenWtaHandler test = new KohoenWtaHandler();
+
+            //test.run();
 
             Console.ReadKey();
         }

@@ -51,6 +51,10 @@
     <Compile Include="KohonenMaps\KohonenMapLetterDataTextFileReader.cs" />
     <Compile Include="KohonenMaps\KohonenMapsHandler.cs" />
     <Compile Include="KohonenMaps\KohonenNeuron.cs" />
+    <Compile Include="KohonenWTA\KohoenWtaHandler.cs" />
+    <Compile Include="KohonenWTA\KohonenFlowersDataFileReader.cs" />
+    <Compile Include="KohonenWTA\KohonenNetwork.cs" />
+    <Compile Include="KohonenWTA\WTAKohonenNeuron.cs" />
     <Compile Include="Layer.cs" />
     <Compile Include="LetterData.cs" />
     <Compile Include="LetterDataTextFileReader.cs" />
@@ -64,5 +68,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
