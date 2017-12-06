@@ -9,6 +9,9 @@ namespace PerceptronLerning.KohonenMaps
     public class KohonenMapsHandler
     {
 
-     KohonenMap KohonenMap =  new KohonenMap(3, 10, @"C:\Users\BartlomiejLeja\source\repos\PerceptronLerning\PerceptronLerning\kohonenMapLearningData.txt");
+    public void run()
+        {
+            KohonenMap KohonenMap = new KohonenMap(35, 5, @"C:\Users\BartlomiejLeja\source\repos\PerceptronLerning\PerceptronLerning\kohonenMapLearningData.txt");
+        }
     }
 }

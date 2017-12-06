@@ -4,7 +4,7 @@ namespace PerceptronLerning.HebbRule
 {
     class HebbRuleHandler
     {
-        public void HebbRuleShower()
+        public void run()
         {
             var inputTest = new HebbLetterDataTextFileReader();
             var array = inputTest.ConverTextForTestDataArray(@"C:\Users\BartlomiejLeja\source\repos\PerceptronLerning\PerceptronLerning\HebbLetterLearningData.txt");
